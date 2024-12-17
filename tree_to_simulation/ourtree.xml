@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4"
+      main_tree_to_execute="GoTo">
+  <BehaviorTree ID="GoTo">
+    <RecoveryNode number_of_retries="4">
+      <PipelineSequence>
+        <ControllerSelector topic_name="controller_selector"
+                            default_controller="FollowPath"
+                            selected_controller="{selected_controller}"/>
+        <PlannerSelector topic_name="planner_selector"
+                         default_planner="GridBased"
+                         selected_planner="{selected_planner}"/>
+        <SmootherSelector topic_name="smoother_selector"
+                          default_smoother="SmoothPath"
+                          selected_smoother="{selected_smoother}"/>
+        <RateController hz="1">
+          <RecoveryNode number_of_retries="1">
+            <PipelineSequence>
+              <ComputePathToPose goal=""
+                                 start=""
+                                 planner_id=""
+                                 server_name=""
+                                 server_timeout=""
+                                 path=""
+                                 error_code_id=""/>
+              <SmoothPath smoother_id="SmoothPath"
+                          unsmoothed_path=""
+                          max_smoothing_duration=""
+                          check_for_collisions=""
+                          smoothed_path=""
+                          smoothing_duration=""
+                          was_completed=""/>
+            </PipelineSequence>
+            <BackUp backup_dist=""
+                    backup_speed=""
+                    time_allowance=""
+                    server_name=""
+                    server_timeout=""
+                    error_code_id=""/>
+          </RecoveryNode>
+        </RateController>
+        <RecoveryNode number_of_retries="1">
+          <FollowPath controller_id="FollowPath"
+                      path=""
+                      goal_checker_id=""
+                      progress_checker_id=""
+                      service_name=""
+                      server_timeout=""
+                      error_code_id=""/>
+          <BackUp backup_dist=""
+                  backup_speed=""
+                  time_allowance=""
+                  server_name=""
+                  server_timeout=""
+                  error_code_id=""/>
+        </RecoveryNode>
+      </PipelineSequence>
+    </RecoveryNode>
+  </BehaviorTree>
+
+  <BehaviorTree ID="ScanArea">
+    <PipelineSequence>
+      <GetNearestAccesibleUnknownPoint/>
+      <RecoveryNode number_of_retries="4">
+        <BackUp backup_dist=""
+                backup_speed=""
+                time_allowance=""
+                server_name=""
+                server_timeout=""
+                error_code_id=""/>
+        <SubTree ID="GoTo"/>
+      </RecoveryNode>
+    </PipelineSequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="TakePhoto">
+    <RecoveryNode number_of_retries="10">
+      <Sequence>
+        <IsVisible/>
+        <Camera/>
+        <IsGoodQuality/>
+      </Sequence>
+      <Sequence>
+        <BackUp backup_dist=""
+                backup_speed=""
+                time_allowance=""
+                server_name=""
+                server_timeout=""
+                error_code_id=""/>
+        <IsVisible/>
+      </Sequence>
+    </RecoveryNode>
+  </BehaviorTree>
+
+  <BehaviorTree ID="task2">
+    <IfThenElse>
+      <IsPoiAvailable/>
+      <Sequence>
+        <SubTree ID="GoTo"/>
+        <SubTree ID="TakePhoto"/>
+      </Sequence>
+      <SubTree ID="ScanArea"/>
+    </IfThenElse>
+  </BehaviorTree>
+
+  <BehaviorTree ID="task3">
+    <SubTree ID="ScanArea"/>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="BackUp">
+      <input_port name="backup_dist">Distance to backup</input_port>
+      <input_port name="backup_speed">Speed at which to backup</input_port>
+      <input_port name="time_allowance">Allowed time for reversing</input_port>
+      <input_port name="server_name">Server name</input_port>
+      <input_port name="server_timeout">Server timeout</input_port>
+      <output_port name="error_code_id">"Back up error code"</output_port>
+    </Action>
+    <Action ID="Camera"
+            editable="true"/>
+    <Action ID="ComputePathToPose">
+      <input_port name="goal">Destination to plan to</input_port>
+      <input_port name="start">Start pose of the path if overriding current robot pose</input_port>
+      <input_port name="planner_id">Mapped name to the planner plugin type to use</input_port>
+      <input_port name="server_name">Server name</input_port>
+      <input_port name="server_timeout">Server timeout</input_port>
+      <output_port name="path">Path created by ComputePathToPose node</output_port>
+      <output_port name="error_code_id">"Compute path to pose error code"</output_port>
+    </Action>
+    <Action ID="ControllerSelector">
+      <input_port name="topic_name">Name of the topic to receive controller selection commands</input_port>
+      <input_port name="default_controller">Default controller of the controller selector</input_port>
+      <output_port name="selected_controller">Name of the selected controller received from the topic subcription</output_port>
+    </Action>
+    <Action ID="FollowPath">
+      <input_port name="controller_id"
+                  default="FollowPath"/>
+      <input_port name="path">Path to follow</input_port>
+      <input_port name="goal_checker_id">Goal checker</input_port>
+      <input_port name="progress_checker_id">Progress checker</input_port>
+      <input_port name="service_name">Service name</input_port>
+      <input_port name="server_timeout">Server timeout</input_port>
+      <output_port name="error_code_id">Follow Path error code</output_port>
+    </Action>
+    <Action ID="GetNearestAccesibleUnknownPoint"
+            editable="true"/>
+    <Condition ID="IsGoodQuality"
+               editable="true"/>
+    <Condition ID="IsPoiAvailable"
+               editable="true"/>
+    <Condition ID="IsVisible"
+               editable="true"/>
+    <Control ID="PipelineSequence"/>
+    <Action ID="PlannerSelector">
+      <input_port name="topic_name">Name of the topic to receive planner selection commands</input_port>
+      <input_port name="default_planner">Default planner of the planner selector</input_port>
+      <output_port name="selected_planner">Name of the selected planner received from the topic subcription</output_port>
+    </Action>
+    <Decorator ID="RateController">
+      <input_port name="hz">Rate</input_port>
+    </Decorator>
+    <Control ID="RecoveryNode">
+      <input_port name="number_of_retries">Number of retries</input_port>
+    </Control>
+    <Action ID="SmoothPath">
+      <input_port name="smoother_id"
+                  default="SmoothPath"/>
+      <input_port name="unsmoothed_path">Path to be smoothed</input_port>
+      <input_port name="max_smoothing_duration">Maximum smoothing duration</input_port>
+      <input_port name="check_for_collisions">Bool if collision check should be performed</input_port>
+      <output_port name="smoothed_path">Smoothed path</output_port>
+      <output_port name="smoothing_duration">Smoothing duration</output_port>
+      <output_port name="was_completed">True if smoothing was not interrupted by time limit</output_port>
+    </Action>
+    <Action ID="SmootherSelector">
+      <input_port name="topic_name">Name of the topic to receive smoother selection commands</input_port>
+      <input_port name="default_smoother">Default smoother of the smoother selector</input_port>
+      <output_port name="selected_smoother">Name of the selected smoother received from the topic subcription</output_port>
+    </Action>
+  </TreeNodesModel>
+
+</root>
