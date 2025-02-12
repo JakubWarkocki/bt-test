@@ -58,7 +58,7 @@
     </RecoveryNode>
   </BehaviorTree>
 
-  <BehaviorTree ID="ScanArea">
+<BehaviorTree ID="ScanArea">
     <PipelineSequence>
       <GetNearestAccesibleUnknownPoint/>
       <RecoveryNode number_of_retries="4">
@@ -179,5 +179,4 @@
       <output_port name="selected_smoother">Name of the selected smoother received from the topic subcription</output_port>
     </Action>
   </TreeNodesModel>
-
 </root>
