@@ -6,6 +6,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from nav2_common.launch import RewrittenYaml
 
+
 def generate_launch_description():
 
     package_name = 'bt_test'  # Change this to your package name
@@ -39,8 +40,12 @@ def generate_launch_description():
 
     # Run the spawner node to spawn the robot in Gazebo
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'my_bot'],
+                        arguments=[
+                            '-topic',
+                            'robot_description',
+                            '-entity',
+                            'my_bot'
+                            ],
                         output='screen')
 
     # Spawn differential drive controller

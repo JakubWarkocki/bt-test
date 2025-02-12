@@ -1,10 +1,20 @@
 bt_navigator:
   ros__parameters:
+    initial_x: 2.0
+    initial_y: 2.0
+    initial_z: 2.0
+    use_sim_time: true
     global_frame: map
     robot_base_frame: base_link
     odom_topic: /odometry/global
     bt_loop_duration: 10
     default_server_timeout: 20
+    transform_tolerance: 0.1
+    default_bt_xml_filename: ../tree_to_simulation/ourtree.xml
+    always_reload_xml: true
+    goal_blackboard_id: goal
+    goals_blackboard_id: goals
+    path_blackboard_id: path
     navigators: ["navigate_to_pose", "navigate_through_poses"]
     navigate_to_pose:
       plugin: "nav2_bt_navigator/NavigateToPoseNavigator"
@@ -114,7 +124,7 @@ local_costmap:
       width: 10
       height: 10
       track_unknown_space: false
-      plugins: ["voxel_layer", "inflation_layer"]
+      plugins: ["voxel_layer", "inflation_layer", "obstacle_layer"]
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -144,6 +154,16 @@ local_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
         inflation_radius: 1.078
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: True
+        observation_sources: scan
+      scan:
+        topic: /scan
+        max_obstacle_height: 2.0
+        clearing: True
+        marking: True
+        data_type: "LaserScan"
 
         
 global_costmap:

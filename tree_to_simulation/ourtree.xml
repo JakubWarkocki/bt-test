@@ -8,8 +8,8 @@
                             default_controller="FollowPath"
                             selected_controller="{selected_controller}"/>
         <PlannerSelector topic_name="planner_selector"
-                         default_planner="GridBased"
-                         selected_planner="{selected_planner}"/>
+                        default_planner="GridBased"
+                        selected_planner="{selected_planner}"/>
         <SmootherSelector topic_name="smoother_selector"
                           default_smoother="SmoothPath"
                           selected_smoother="{selected_smoother}"/>
@@ -17,12 +17,12 @@
           <RecoveryNode number_of_retries="1">
             <PipelineSequence>
               <ComputePathToPose goal=""
-                                 start=""
-                                 planner_id=""
-                                 server_name=""
-                                 server_timeout=""
-                                 path=""
-                                 error_code_id=""/>
+                                start=""
+                                planner_id=""
+                                server_name=""
+                                server_timeout=""
+                                path=""
+                                error_code_id=""/>
               <SmoothPath smoother_id="SmoothPath"
                           unsmoothed_path=""
                           max_smoothing_duration=""
@@ -146,11 +146,11 @@
     <Action ID="GetNearestAccesibleUnknownPoint"
             editable="true"/>
     <Condition ID="IsGoodQuality"
-               editable="true"/>
+              editable="true"/>
     <Condition ID="IsPoiAvailable"
-               editable="true"/>
+              editable="true"/>
     <Condition ID="IsVisible"
-               editable="true"/>
+              editable="true"/>
     <Control ID="PipelineSequence"/>
     <Action ID="PlannerSelector">
       <input_port name="topic_name">Name of the topic to receive planner selection commands</input_port>
