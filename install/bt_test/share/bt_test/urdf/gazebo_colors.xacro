@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <!-- Gazebo is unable to use the same <material> tags that are already in the URDF (that RViz uses). -->
+    <!-- Instead, we need to add gazebo tags for our links that refer to Gazebo materials -->
+
+
+    <gazebo reference="hull">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <gazebo reference="rear_wheel">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+</robot>

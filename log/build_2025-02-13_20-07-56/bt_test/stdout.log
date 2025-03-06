@@ -1,0 +1,50 @@
+running egg_info
+creating build/bt_test/bt_test.egg-info
+writing build/bt_test/bt_test.egg-info/PKG-INFO
+writing dependency_links to build/bt_test/bt_test.egg-info/dependency_links.txt
+writing entry points to build/bt_test/bt_test.egg-info/entry_points.txt
+writing requirements to build/bt_test/bt_test.egg-info/requires.txt
+writing top-level names to build/bt_test/bt_test.egg-info/top_level.txt
+writing manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+reading manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+writing manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build
+creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib
+creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test
+copying bt_test/__init__.py -> /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test
+running install
+running install_lib
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test
+copying /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test/__init__.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test
+byte-compiling /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index/packages
+copying resource/bt_test -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index/packages
+copying package.xml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+copying launch/launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+copying launch/dual_ekf_navsat.launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+copying launch/rsp.launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+copying config/my_controllers.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+copying config/dual_ekf_navsat_params.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+copying config/gaz_ros2_ctl_use_sim.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+copying config/nav2_params.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/inertia_macros.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/gazebo_colors.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/parameter_declaration.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/robot_core.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/ros2_control.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+copying urdf/robot.urdf.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/worlds
+copying worlds/basic.world -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/worlds
+running install_egg_info
+Copying build/bt_test/bt_test.egg-info to /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test-0.0.0-py3.10.egg-info
+running install_scripts
+Installing state_publisher script to /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/bt_test
+writing list of installed files to '/home/kamil/ros2_ws/src/bt-test/build/bt_test/install.log'

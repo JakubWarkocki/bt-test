@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+    <xacro:include filename="parameter_declaration.xacro" />
+    <xacro:include filename="inertia_macros.xacro" />
+    <xacro:include filename="gazebo_colors.xacro" />
+
+    <link name="base_link">
+
+    </link>
+        <joint name="hull_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="hull"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="hull">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${hull_radius}" length="${hull_thickness}"/>
+            </geometry>
+            <material name="orange">
+                <color rgba="1 0.3 0.1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="1" length="0.5"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="${hull_mass}" radius="1" length="0.5">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="hull"/>
+        <child link="left_wheel"/>
+        <origin xyz="${wheel_offset_x_front} ${wheel_offset_y} ${-wheel_offset_z}" rpy="${-pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.33 0.33 0.33 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_sphere mass="${wheel_mass}" radius="${wheel_radius}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="hull"/>
+        <child link="right_wheel"/>
+        <origin xyz="${wheel_offset_x_front} ${-wheel_offset_y} ${-wheel_offset_z}" rpy="${-pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.33 0.33 0.33 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_sphere mass="${wheel_mass}" radius="${wheel_radius}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+
+    <joint name="rear_wheel_joint" type="continuous">
+        <parent link="hull"/>
+        <child link="rear_wheel"/>
+        <origin xyz="${wheel_offset_x_rear} 0 ${-wheel_offset_z}" rpy="${pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="rear_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.33 0.33 0.33 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="${wheel_radius}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_sphere mass="${wheel_mass}" radius="${wheel_radius}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_sphere>
+    </link>
+
+    <joint name="gps_joint" type="fixed">
+        <parent link="hull"/>
+        <child link="gps_frame"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="gps_frame">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${wheel_mass}"/>
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+        </inertial>
+    </link>
+
+
+    <gazebo reference="gps_frame">
+        <sensor name="gps_sensor" type="gps">
+            <always_on>true</always_on>
+            <update_rate>30</update_rate>
+            <pose>0 0 0 0 0 0</pose>
+            <gps>
+            </gps>
+            <plugin name="gps_controller" filename="libgazebo_ros_gps_sensor.so">
+                <ros>
+                    <remapping>gps_controller/out:=/gps/fix</remapping>
+                </ros>
+                <frame_name>gps_frame</frame_name>
+            </plugin>
+        </sensor>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="hull"/>
+        <child link="imu_frame"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="imu_frame">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        </inertial>
+    </link>
+
+  <gazebo reference="imu_frame">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>10</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_controller">
+        <ros>
+            <remapping>imu_controller/out:=/imu</remapping>
+        </ros>
+        <topicName>imu</topicName>
+        <bodyName>imu_frame</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_frame</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+
+    <joint name="laser_joint" type="fixed">
+        <parent link="hull"/>
+        <child link="laser_frame"/>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
+    </joint>
+
+    <link name="laser_frame">
+        <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="laser_frame">
+        <material>Gazebo/Red</material>
+
+        <sensor name="laser" type="ray">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>30</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>90</samples>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>1</samples>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>1.01</min>
+                    <max>12</max>
+                </range>
+            </ray>
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                <frame_name>laser_frame</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

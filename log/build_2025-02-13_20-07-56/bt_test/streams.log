@@ -1,0 +1,52 @@
+[0.493s] Invoking command in '/home/kamil/ros2_ws/src/bt-test': PYTHONPATH=/home/kamil/ros2_ws/src/bt-test/build/bt_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/bt_test build --build-base /home/kamil/ros2_ws/src/bt-test/build/bt_test/build install --record /home/kamil/ros2_ws/src/bt-test/build/bt_test/install.log --single-version-externally-managed install_data
+[0.645s] running egg_info
+[0.646s] creating build/bt_test/bt_test.egg-info
+[0.646s] writing build/bt_test/bt_test.egg-info/PKG-INFO
+[0.646s] writing dependency_links to build/bt_test/bt_test.egg-info/dependency_links.txt
+[0.646s] writing entry points to build/bt_test/bt_test.egg-info/entry_points.txt
+[0.646s] writing requirements to build/bt_test/bt_test.egg-info/requires.txt
+[0.646s] writing top-level names to build/bt_test/bt_test.egg-info/top_level.txt
+[0.649s] writing manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+[0.650s] reading manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+[0.651s] writing manifest file 'build/bt_test/bt_test.egg-info/SOURCES.txt'
+[0.651s] running build
+[0.651s] running build_py
+[0.651s] creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build
+[0.651s] creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib
+[0.651s] creating /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test
+[0.651s] copying bt_test/__init__.py -> /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test
+[0.651s] running install
+[0.651s] running install_lib
+[0.651s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test
+[0.651s] copying /home/kamil/ros2_ws/src/bt-test/build/bt_test/build/lib/bt_test/__init__.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test
+[0.651s] byte-compiling /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test/__init__.py to __init__.cpython-310.pyc
+[0.652s] running install_data
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index/packages
+[0.652s] copying resource/bt_test -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/ament_index/resource_index/packages
+[0.652s] copying package.xml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+[0.652s] copying launch/launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+[0.652s] copying launch/dual_ekf_navsat.launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+[0.652s] copying launch/rsp.launch.py -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/launch
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+[0.652s] copying config/my_controllers.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+[0.652s] copying config/dual_ekf_navsat_params.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+[0.652s] copying config/gaz_ros2_ctl_use_sim.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+[0.652s] copying config/nav2_params.yaml -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/config
+[0.652s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.652s] copying urdf/inertia_macros.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] copying urdf/gazebo_colors.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] copying urdf/parameter_declaration.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] copying urdf/robot_core.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] copying urdf/ros2_control.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] copying urdf/robot.urdf.xacro -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/urdf
+[0.653s] creating /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/worlds
+[0.653s] copying worlds/basic.world -> /home/kamil/ros2_ws/src/bt-test/install/bt_test/share/bt_test/worlds
+[0.653s] running install_egg_info
+[0.654s] Copying build/bt_test/bt_test.egg-info to /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages/bt_test-0.0.0-py3.10.egg-info
+[0.655s] running install_scripts
+[0.668s] Installing state_publisher script to /home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/bt_test
+[0.668s] writing list of installed files to '/home/kamil/ros2_ws/src/bt-test/build/bt_test/install.log'
+[0.682s] Invoked command in '/home/kamil/ros2_ws/src/bt-test' returned '0': PYTHONPATH=/home/kamil/ros2_ws/src/bt-test/build/bt_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kamil/ros2_ws/src/bt-test/install/bt_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/bt_test build --build-base /home/kamil/ros2_ws/src/bt-test/build/bt_test/build install --record /home/kamil/ros2_ws/src/bt-test/build/bt_test/install.log --single-version-externally-managed install_data
