@@ -1,0 +1,9 @@
+ros__parameters:
+  output: "/diff_cont/cmd_vel_unstamped"
+
+  topics:
+    teleop_cmd:
+      topic: "/cmd_vel"
+      timeout: 0.2
+      priority: 100
+
